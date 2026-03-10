@@ -1,7 +1,9 @@
 Real-time fraud detection data platform built using Kafka, Spark Streaming, AWS S3, and machine learning.
 ## Overview
 
-This project implements a **real-time financial transaction fraud detection platform** using streaming data pipelines and machine learning.
+This project is a **financial fraud detection platform** built using Python and AWS.  
+It simulates financial transactions, detects potential fraudulent activity using ML models, and provides a scalable data pipeline with monitoring and orchestration.
+
 
 The system simulates financial transactions, ingests them using Kafka, processes them with Spark Streaming, stores raw and processed data in a data lake, and applies machine learning models to detect suspicious transactions.
 
@@ -44,6 +46,7 @@ E --> F[Feature Engineering]
 F --> G[S3 Raw Layer]
 F --> H[S3 Processed Layer]
 F --> I[Snowflake Analytics Layer]
+F --> J[vectorDB for Similarity search]
 ```
 
 ---
@@ -55,44 +58,28 @@ flowchart LR
 
 A[Kafka Streaming] --> B[EMR Spark Cluster]
 B --> C[AWS S3 Data Lake]
-C --> D[Snowflake Warehouse]
-B --> E[SageMaker Model]
-E --> F[Fraud Detection API]
+B --> D[SageMaker model]
+C --> E[Snowflake Warehouse]
+D --> F[Fraud Detection API]
+D --> G[VectorDB Deployment]
+
 ```
 
 ---
 
 
 
+## Tech Stack
+- **Programming**: Python, SQL  
+- **Big Data / Streaming**: Kafka, Spark, Redis  
+- **Orchestration**: Airflow  
+- **Cloud & Storage**: AWS S3, AWS Lambda (optional)  
+- **Machine Learning**: Scikit-learn, PyTorch (or TensorFlow)
+- **Vector database**: FAISS/Pinecone/Weaviate
+- **CI/CD**: GitHub Actions  
+- **Containerization**: Docker  
 
-## Technology Stack
 
-### Data Ingestion
-- Apache Kafka
-- Python
-
-### Stream Processing
-- Apache Spark (PySpark)
-
-### Storage
-- AWS S3 (Data Lake)
-- Snowflake (Analytics Warehouse)
-
-### Machine Learning
-- Scikit-learn
-- Isolation Forest (Fraud Detection)
-
-### API Layer
-- FastAPI
-
-### Data Governance
-- Great Expectations
-
-### Development Tools
-- Python
-- Git
-- PyCharm
----
 
 ## Data Flow
 
@@ -128,6 +115,10 @@ config/
 - Cloud data lake storage
 - Fraud risk scoring API
 - Data quality validation for financial transactions
+- Airflow DAG orchestration for pipelines
+- CI/CD pipeline with GitHub Actions
+- CI/CD pipeline with GitHub Actions
+- Monitoring and logging for pipelines
 
 
 ## Learning Outcomes
